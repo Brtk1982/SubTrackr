@@ -29,7 +29,7 @@ export default function SubscriptionManager() {
     nextBilling: '',
     category: 'entertainment'
   });
-const storage = window.storage ?? {
+  const storage = window.storage ?? {
     async get(key) {
       const value = localStorage.getItem(key);
       return value == null ? null : { value };
@@ -238,14 +238,14 @@ const storage = window.storage ?? {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white">
+    <div className="min-h-[100svh] bg-slate-950 text-white">
       {/* Subtle “Apple-ish” gradient haze */}
       <div className="pointer-events-none fixed inset-0 opacity-80">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(168,85,247,0.22),transparent_38%),radial-gradient(circle_at_82%_8%,rgba(236,72,153,0.16),transparent_40%),radial-gradient(circle_at_50%_90%,rgba(56,189,248,0.10),transparent_45%)]" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/0 to-black/35" />
       </div>
 
-      <div className="relative p-4 md:p-8">
+      <div className="relative p-4 md:p-8 pt-[max(1rem,env(safe-area-inset-top))] pb-[max(1rem,env(safe-area-inset-bottom))]">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <header className="relative text-center mb-10 md:mb-12">
@@ -477,7 +477,7 @@ const storage = window.storage ?? {
           <div className="mb-6 flex flex-wrap items-center gap-3">
             <button
               onClick={() => setShowForm(!showForm)}
-              className="inline-flex items-center gap-3 rounded-xl px-6 py-3 font-semibold border border-white/10 bg-white/[0.04] hover:bg-white/[0.06] transition-colors shadow-lg shadow-black/20"
+              className="inline-flex items-center gap-3 rounded-xl px-6 py-3 font-semibold border border-white/10 bg-white/[0.04] hover:bg-white/[0.06] transition-colors shadow-lg shadow-black/20 w-full sm:w-auto"
             >
               <span className="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-gradient-to-br from-purple-500/80 to-pink-500/70 border border-white/10">
                 <Plus size={18} />
@@ -495,14 +495,14 @@ const storage = window.storage ?? {
 
             <button
               onClick={exportData}
-              className="rounded-xl px-5 py-3 font-semibold border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] transition-colors"
+              className="rounded-xl px-5 py-3 font-semibold border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] transition-colors w-full sm:w-auto"
             >
               Export
             </button>
 
             <button
               onClick={() => importInputRef.current?.click()}
-              className="rounded-xl px-5 py-3 font-semibold border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] transition-colors"
+              className="rounded-xl px-5 py-3 font-semibold border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] transition-colors w-full sm:w-auto"
             >
               Import
             </button>
