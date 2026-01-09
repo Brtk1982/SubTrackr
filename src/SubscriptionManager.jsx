@@ -29,6 +29,16 @@ export default function SubscriptionManager() {
     nextBilling: '',
     category: 'entertainment'
   });
+const storage = window.storage ?? {
+    async get(key) {
+      const value = localStorage.getItem(key);
+      return value == null ? null : { value };
+    },
+    async set(key, value) {
+      localStorage.setItem(key, value);
+      return true;
+    }
+  };
 
   useEffect(() => {
     loadSubscriptions();
@@ -54,7 +64,7 @@ export default function SubscriptionManager() {
 
   const loadSubscriptions = async () => {
     try {
-      const result = await window.storage.get('subscriptions');
+      const result = await storage.get('subscriptions');
       if (result) setSubscriptions(JSON.parse(result.value));
     } catch (error) {
       console.log('No saved subscriptions yet');
@@ -65,7 +75,7 @@ export default function SubscriptionManager() {
 
   const saveSubscriptions = async () => {
     try {
-      await window.storage.set('subscriptions', JSON.stringify(subscriptions));
+      await storage.set('subscriptions', JSON.stringify(subscriptions));
     } catch (error) {
       console.error('Error saving:', error);
     }
